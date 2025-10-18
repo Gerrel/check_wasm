@@ -1,6 +1,6 @@
 # check_wasm
 
-Check if WASM is correctly configured
+Check if WASM is correctly configured. Checks if WASM version is loaded and multiheading is supported.
 
 [![Watch on GitHub][github-watch-badge]][github-watch]
 [![Star on GitHub][github-star-badge]][github-star]

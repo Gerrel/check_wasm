@@ -1,3 +1,7 @@
+## 0.0.3 - 18 oct 2025.
+
+* improved docs.
+
 ## 0.0.2 - 18 oct 2025.
 
 * improved readme.

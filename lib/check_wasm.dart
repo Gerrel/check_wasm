@@ -4,7 +4,25 @@ import 'package:check_wasm/check_wasm_stub.dart'
     if (dart.library.js) 'check_wasm_web.dart';
 import 'package:http/http.dart' as http;
 
+/// A widget that checks for WebAssembly (Wasm) and Multi-threading support in web environments.
+///
+/// This widget can display warning messages when Wasm or multi-threading support is missing
+/// in web browsers. The warnings can be enabled or disabled using the [enabled] parameter.
+///
+/// Example:
+/// ```dart
+/// CheckWasm(
+///   enabled: true,
+///   child: MyApp(),
+/// )
+/// ```
 class CheckWasm extends StatefulWidget {
+  /// Creates a CheckWasm widget.
+  ///
+  /// The [child] parameter is required and represents the widget tree to be rendered.
+  /// The [enabled] parameter determines whether Wasm checks are performed (defaults to true).
+  /// The [platformInfo] parameter allows injection of platform information for testing
+  /// (defaults to [DefaultPlatformInfo]).
   const CheckWasm({
     required this.child,
     this.enabled = true,
@@ -12,15 +30,27 @@ class CheckWasm extends StatefulWidget {
     super.key,
   });
 
+  /// The widget to display below any Wasm or multi-threading warning messages.
   final Widget child;
+
+  /// Whether to perform Wasm and multi-threading compatibility checks.
+  ///
+  /// When true, warning messages will be displayed if Wasm or multi-threading
+  /// support is missing. When false, no checks are performed and no warnings
+  /// are shown.
   final bool enabled;
+
+  /// Platform information provider used to determine the current platform.
+  ///
+  /// This is primarily used to check if the app is running on the web platform.
+  /// Can be overridden for testing purposes.
   final PlatformInfo platformInfo;
 
   @override
-  State<StatefulWidget> createState() => CheckWasmState();
+  State<StatefulWidget> createState() => _CheckWasmState();
 }
 
-class CheckWasmState extends State<CheckWasm> {
+class _CheckWasmState extends State<CheckWasm> {
   var _showWasmMessage = false;
   var _showMtMessage = false;
 
