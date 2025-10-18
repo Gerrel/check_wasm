@@ -6,6 +6,8 @@ Check if WASM is correctly configured
 [![Star on GitHub][github-star-badge]][github-star]
 [![pub package](https://img.shields.io/pub/v/check_wasm.svg)](https://pub.dev/packages/check_wasm)
 
+![Screenshot](./example.png)
+
 ## Getting Started
 
 `Also see example project`
