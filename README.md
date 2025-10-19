@@ -20,6 +20,7 @@ MaterialApp(
     ),
 ),
 ```
+Add to following `/?check_wasm` to the url and check will be enabled.
 
 ## License
 

@@ -1,3 +1,7 @@
+## 0.0.4 - 19 oct 2025.
+
+* added check_wasm as query parameter check in the url. 
+
 ## 0.0.3 - 18 oct 2025.
 
 * improved docs.

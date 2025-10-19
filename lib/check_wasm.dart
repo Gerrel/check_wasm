@@ -25,7 +25,7 @@ class CheckWasm extends StatefulWidget {
   /// (defaults to [DefaultPlatformInfo]).
   const CheckWasm({
     required this.child,
-    this.enabled = true,
+    this.enabled,
     this.platformInfo = const DefaultPlatformInfo(),
     super.key,
   });
@@ -38,7 +38,7 @@ class CheckWasm extends StatefulWidget {
   /// When true, warning messages will be displayed if Wasm or multi-threading
   /// support is missing. When false, no checks are performed and no warnings
   /// are shown.
-  final bool enabled;
+  final bool? enabled;
 
   /// Platform information provider used to determine the current platform.
   ///
@@ -57,10 +57,21 @@ class _CheckWasmState extends State<CheckWasm> {
   late final Future<bool> _hasMultipleThreadsSupport;
   final hasWasm = const bool.fromEnvironment('dart.tool.dart2wasm');
 
+  late String _currentUrl = getCurrentUrl();
+  late bool _isEnabled;
+
+  @override
+  void didUpdateWidget(covariant CheckWasm oldWidget) {
+    _currentUrl = getCurrentUrl();
+    _isEnabled = widget.enabled ?? _currentUrl.contains('check_wasm');
+    super.didUpdateWidget(oldWidget);
+  }
+
   @override
   void initState() {
     super.initState();
-    if (widget.platformInfo.isWeb && widget.enabled) {
+    _isEnabled = widget.enabled ?? _currentUrl.contains('check_wasm');
+    if (widget.platformInfo.isWeb && _isEnabled) {
       _hasMultipleThreadsSupport = _check();
     } else {
       _hasMultipleThreadsSupport = Future.value(false);
@@ -71,8 +82,7 @@ class _CheckWasmState extends State<CheckWasm> {
     if (!hasWasm) {
       return false;
     }
-    final url = getCurrentUrl();
-    final headers = await _getHeaders(url);
+    final headers = await _getHeaders(_currentUrl);
     return _hasMultipleThreadsSupportHeaders(headers);
   }
 
@@ -90,7 +100,7 @@ class _CheckWasmState extends State<CheckWasm> {
 
   @override
   Widget build(BuildContext context) {
-    if (!widget.platformInfo.isWeb || !widget.enabled) {
+    if (!widget.platformInfo.isWeb || !_isEnabled) {
       return widget.child;
     }
     return Scaffold(
