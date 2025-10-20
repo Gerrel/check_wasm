@@ -57,7 +57,7 @@ class _CheckWasmState extends State<CheckWasm> {
   late final Future<bool> _hasMultipleThreadsSupport;
   final hasWasm = const bool.fromEnvironment('dart.tool.dart2wasm');
 
-  late String _currentUrl = getCurrentUrl();
+  late String _currentUrl;
   late bool _isEnabled;
 
   @override
@@ -70,6 +70,7 @@ class _CheckWasmState extends State<CheckWasm> {
   @override
   void initState() {
     super.initState();
+    _currentUrl = getCurrentUrl();
     _isEnabled = widget.enabled ?? _currentUrl.contains('check_wasm');
     if (widget.platformInfo.isWeb && _isEnabled) {
       _hasMultipleThreadsSupport = _check();

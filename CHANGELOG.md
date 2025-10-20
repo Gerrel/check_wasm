@@ -1,3 +1,7 @@
+## 0.0.5 - 20 oct 2025.
+
+* check not working in wasm release build
+
 ## 0.0.4 - 19 oct 2025.
 
 * added check_wasm as query parameter check in the url. 
