@@ -1,7 +1,7 @@
 import 'package:check_wasm/platform_info.dart';
 import 'package:flutter/material.dart';
 import 'package:check_wasm/check_wasm_stub.dart'
-    if (dart.library.js) 'check_wasm_web.dart';
+    if (dart.library.js_interop) 'check_wasm_web.dart';
 import 'package:http/http.dart' as http;
 
 /// A widget that checks for WebAssembly (Wasm) and Multi-threading support in web environments.

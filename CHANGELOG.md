@@ -1,6 +1,10 @@
+## 0.0.6 - 22 oct 2025.
+
+* fix conditional import.
+
 ## 0.0.5 - 20 oct 2025.
 
-* check not working in wasm release build
+* check not working in wasm release build.
 
 ## 0.0.4 - 19 oct 2025.
 
